@@ -11,6 +11,7 @@ public class Kod {
         int kod=0;
         kod=kod_megadasa(kod);
         Belepes(kod);
+        Belepes2(kod);
     }
 
     private static int kod_megadasa(int kod) {
@@ -43,6 +44,11 @@ public class Kod {
         else {
             System.out.println("Belépés megtagadva");
         }
+    }
+    
+    private static void Belepes2(int kod){
+        String szamok=Integer.toString(kod);
+        System.out.println(szamok);
     }
 
     private static boolean ellenor(int kod) {
