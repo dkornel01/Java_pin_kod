@@ -49,6 +49,7 @@ public class Kod {
     private static void Belepes2(int kod){
         String szamok=Integer.toString(kod);
         System.out.println(szamok);
+        
     }
 
     private static boolean ellenor(int kod) {
