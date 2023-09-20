@@ -10,6 +10,10 @@ public class Kod {
     static Scanner scr=new Scanner(System.in); 
     static Random rnd=new Random();
     public static void main(String[] args) {
+        pin_kod();
+    }
+
+    private static void pin_kod() {
         int kod=0;
         kod=kod_megadasa(kod);
         //Belepes(kod);
@@ -60,11 +64,7 @@ public class Kod {
             char [] valaszto=new char[3];
             int x=0;
             for (;x<3;x++){
-                        int szam=rnd.nextInt(10);
-                        String egy=lista[szam];
-                        valaszto[x]=egy.charAt(0);
-
-                        
+                valaszto[x]=veletlen_szamok(lista, valaszto, x, szamok, i);
             }
             valaszto[rnd.nextInt(3)]=szamok.charAt(i);
             boolean helyes=valasztas(valaszto,szamok,i);
@@ -76,6 +76,15 @@ public class Kod {
             }
         }
         
+    }
+
+    private static char veletlen_szamok(String[] lista, char[] valaszto, int x, String szamok, int i) {
+        do{
+            int szam=rnd.nextInt(10);
+            String egy=lista[szam];
+            valaszto[x]=egy.charAt(0);
+        }while(valaszto[x]==szamok.charAt(i));
+        return valaszto[x];
     }
 
     private static boolean ellenor(int kod) {
@@ -90,15 +99,25 @@ public class Kod {
         for (int y=0;y<3;y++){
             System.out.println(valaszto[y]);
         }
-        System.out.println("irja be egytol haromig melyik szam jo");
-        int kod=scr.nextInt();
-        if (valaszto[kod-1]==szamok.charAt(i)){
-            System.out.println("jo");
+        
+        int sor=-1;
+        sor = sor_valasztas(sor);
+        System.out.println("");
+        if (valaszto[sor-1]==szamok.charAt(i)){
+            System.out.println("helyes");
             talalt=true;
         }
         else {
             System.out.println("helytelen");
         }
         return talalt;
+    }
+
+    private static int sor_valasztas(int sor) {
+        do{
+            System.out.print("irja be egytol haromig melyik szam jo: ");
+            sor=scr.nextInt();
+        }while (sor<0||sor>3);
+        return sor;
     }
 }
